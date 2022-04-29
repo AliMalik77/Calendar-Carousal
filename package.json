@@ -1,0 +1,50 @@
+{
+  "name": "calendar-carousal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "webpack": "webpack",
+    "start": "webpack serve",
+    "test": "jest --config ./jest.config.json",
+    "test:watch": "npm run test -- --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AliMalik77/Calendar-carousal.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AliMalik77/Calendar-carousal/issues"
+  },
+  "homepage": "https://github.com/AliMalik77/Calendar-carousal#readme",
+  "dependencies": {
+    "antd": "^4.20.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "moment": "^2.29.3",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-error-boundary": "^3.1.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.9",
+    "@babel/node": "^7.16.8",
+    "@babel/plugin-transform-runtime": "^7.17.0",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "axios": "^0.27.1",
+    "babel-loader": "^8.2.5",
+    "babel-plugin-import": "^1.13.5",
+    "css-loader": "^6.7.1",
+    "html-webpack-plugin": "^5.5.0",
+    "image-webpack-loader": "^8.1.0",
+    "less": "^4.1.2",
+    "less-loader": "^10.2.0",
+    "path": "^0.12.7",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
