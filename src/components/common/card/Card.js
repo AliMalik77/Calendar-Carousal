@@ -8,16 +8,17 @@ const CalendarCard = (props) => {
   return (
     <>
       {" "}
-      <Card className="card" title={props.data.day}>
-        <p className="date">{props.data.date}</p>
-        <Meta className="meta" title={props.data.month}></Meta>
+      <Card className="card" title={props.day}>
+        <p className="date">{props.date}</p>
+
+        <Meta className="meta" title={props.month}></Meta>
       </Card>
     </>
   );
 };
 
 CalendarCard.propTypes = {
-  date: PropTypes.number.isRequired,
+  date: PropTypes.string.isRequired,
   day: PropTypes.string.isRequired,
   month: PropTypes.string.isRequired,
 };

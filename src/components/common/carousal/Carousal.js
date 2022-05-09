@@ -2,14 +2,7 @@ import { Carousel, Row, Col, Button } from "antd";
 import React from "react";
 import "./carousal.styles.less";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
-const contentStyle = {
-  height: "300px",
-  color: "#fff",
-  lineHeight: "160px",
-
-  textAlign: "center",
-  background: "#364d79",
-};
+import PropTypes from "prop-types";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -28,7 +21,16 @@ function SamplePrevArrow(props) {
   const { className, style, onClick } = props;
 
   return (
-    <div className={className} onClick={onClick}>
+    <div
+      className={className}
+      onClick={onClick}
+      style={{
+        height: "10vh",
+        backgroundColor: "red",
+        width: "50px",
+        marginRight: "100px",
+      }}
+    >
       <Button>
         {" "}
         <LeftOutlined />
@@ -38,27 +40,43 @@ function SamplePrevArrow(props) {
 }
 
 export const Carousal = (props) => {
-  const data = props.data;
-  console.log("props data is .......>>>>>>>>>", props);
-
   const settings = {
-    dots: true,
-    // autoplay: true,
-    arrows: true,
-    slidesToShow: 3,
-    slidesToScroll: 3,
-    speed: 300,
-    prevArrow: <SamplePrevArrow />,
+    // prevArrow: <SamplePrevArrow />,
     nextArrow: <SampleNextArrow />,
-
-    infinite: false,
   };
 
   return (
-    <Col lg={{ span: 18, offset: 3 }}>
-      <Carousel className="carousal" {...settings}>
+    <Col lg={{ span: 18, offset: 4 }}>
+      <Carousel
+        className="carousal"
+        dots={props.dots}
+        {...settings}
+        arrows={props.arrows}
+        slidesToShow={props.slidesToShow}
+        slidesToScroll={props.slidesToScroll}
+        speed={props.speed}
+        infinite={props.infinite}
+      >
         {props.children}
       </Carousel>
     </Col>
   );
+};
+
+Carousal.propTypes = {
+  dots: PropTypes.bool.isRequired,
+  arrows: PropTypes.bool.isRequired,
+  slidesToShow: PropTypes.number.isRequired,
+  slidesToScroll: PropTypes.number.isRequired,
+  speed: PropTypes.number.isRequired,
+  infinite: PropTypes.bool.isRequired,
+};
+
+Carousal.defaultProps = {
+  dots: true,
+  arrows: true,
+  slidesToShow: 3,
+  slidesToScroll: 3,
+  speed: 300,
+  infinite: true,
 };

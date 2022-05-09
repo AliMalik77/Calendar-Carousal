@@ -1,22 +1,16 @@
-import React from "react";
 import { TimePicker } from "antd";
 import moment from "moment";
-// function onChange(time, timeString) {
-//   console.log("time", time);
-//   console.log("timeString", timeString);
-//   // localStorage.setItem("time", timeString);
-// }
+import React from "react";
 
-const format = "HH:mm";
+function onChange(time, timeString) {
+  console.log(time, timeString);
+}
 
-const TimePickerr = () => (
-  <>
-    <TimePicker
-      defaultValue={moment("00:00", format)}
-      format={format}
-      // onChange={onChange}
-    />
-  </>
+const Timepickerr = () => (
+  <TimePicker
+    onChange={onChange}
+    defaultValue={moment("00:00:00", "HH:mm:ss")}
+  />
 );
 
-export default TimePickerr;
+export default Timepickerr;

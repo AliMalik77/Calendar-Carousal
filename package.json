@@ -20,8 +20,12 @@
   },
   "homepage": "https://github.com/AliMalik77/Calendar-carousal#readme",
   "dependencies": {
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.7",
     "antd": "^4.20.1",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "enzyme": "^3.11.0",
+    "jest": "^28.1.0",
+    "jest-dom": "^4.0.0",
     "moment": "^2.29.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

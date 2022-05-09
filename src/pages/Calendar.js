@@ -3,10 +3,9 @@ import { Col, Row } from "antd";
 import moment from "moment";
 import { Carousal } from "../components/common/carousal/Carousal";
 import CalendarCard from "../components/common/card/Card";
-import TimePickerr from "../components/timepicker/Timepicker";
 import { Button, Tooltip } from "antd";
 import { CaretDownOutlined, CaretUpOutlined } from "@ant-design/icons";
-import Booking from "../components/booking/Booking";
+import Booking from "./Booking";
 
 const getDaysBetweenDates = function (startDate, endDate) {
   var now = startDate.clone(),
@@ -17,6 +16,7 @@ const getDaysBetweenDates = function (startDate, endDate) {
       day: moment(now).format("dddd"),
       date: moment(now).format("DD"),
       month: moment(now).format("MMMM"),
+      year: moment(now).format("YYYY"),
     });
 
     now.add(1, "days");
@@ -25,35 +25,89 @@ const getDaysBetweenDates = function (startDate, endDate) {
 };
 
 export const Calendar = () => {
-  const [event, setEvent] = useState(false);
+  const [initialState, setInitialState] = useState({
+    event: false,
+    date: ["Today"],
+    data: [],
+  });
 
   var startDate = moment("2021-02-03");
-  var endDate = moment("2021-02-06");
+  var endDate = moment("2021-02-10");
 
   var dateList = getDaysBetweenDates(startDate, endDate);
 
-  if (!event) {
+  function handleEvent(data) {
+    setInitialState((state) => {
+      return {
+        ...state,
+        date: data.date.concat(" ", data.month, " ", data.year),
+        event: true,
+        data: data,
+      };
+    });
+  }
+
+  function handleDate(data) {
+    if (data) {
+      setInitialState((state) => {
+        return {
+          ...state,
+          event: true,
+        };
+      });
+    } else {
+      setInitialState((state) => {
+        return {
+          ...state,
+          event: false,
+        };
+      });
+    }
+  }
+  if (!initialState.event) {
     return (
       <>
-        <Row style={{ marginTop: "200px" }}>
-          <Col span={1} offset={18}>
+        <Row
+          style={{ marginTop: "200px", fontWeight: "bold", fontSize: "20px" }}
+        >
+          <Col span={14} offset={4}>
             {" "}
+            Date{" "}
+          </Col>
+          <Col>
+            {initialState.date}{" "}
             <Tooltip title="Down">
               <Button
                 type="primary"
                 shape="square"
                 icon={<CaretDownOutlined />}
-                onClick={() => setEvent(true)}
+                onClick={() => handleDate(true)}
               />
             </Tooltip>{" "}
           </Col>
         </Row>
 
         <Row>
-          <Carousal>
+          <Carousal
+            dots={true}
+            arrows={true}
+            slidesToShow={3}
+            slidesToScroll={3}
+            speed={300}
+            infinite={true}
+          >
             {dateList.map((item, index) => (
-              <Col span={24} key={index}>
-                <CalendarCard data={dateList[index]} key={index} />
+              <Col
+                span={24}
+                key={index}
+                onClick={() => handleEvent(dateList[index])}
+              >
+                <CalendarCard
+                  date={dateList[index].date}
+                  day={dateList[index].day}
+                  month={dateList[index].month}
+                  key={index}
+                />
               </Col>
             ))}
           </Carousal>
@@ -63,15 +117,21 @@ export const Calendar = () => {
   } else {
     return (
       <>
-        <Row style={{ marginTop: "200px" }}>
-          <Col span={1} offset={18}>
+        <Row
+          style={{ marginTop: "200px", fontWeight: "bold", fontSize: "20px" }}
+        >
+          <Col span={14} offset={4}>
             {" "}
+            Date{" "}
+          </Col>
+          <Col>
+            {initialState.date}{" "}
             <Tooltip title="Down">
               <Button
                 type="primary"
                 shape="square"
                 icon={<CaretUpOutlined />}
-                onClick={() => setEvent(false)}
+                onClick={() => handleDate(false)}
               />
             </Tooltip>{" "}
           </Col>
@@ -80,8 +140,7 @@ export const Calendar = () => {
         <Row>
           {" "}
           <Col span={24}>
-            {" "}
-            <Booking />
+            <Booking data={initialState.data} />
           </Col>
         </Row>
       </>
