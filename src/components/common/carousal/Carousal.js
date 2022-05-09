@@ -13,7 +13,7 @@ const contentStyle = {
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
-  // console.log("props", props);
+
   return (
     <div className={className} onClick={onClick}>
       <Button>
@@ -26,7 +26,7 @@ function SampleNextArrow(props) {
 
 function SamplePrevArrow(props) {
   const { className, style, onClick } = props;
-  // console.log("props", props);
+
   return (
     <div className={className} onClick={onClick}>
       <Button>

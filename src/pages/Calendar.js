@@ -18,7 +18,7 @@ const getDaysBetweenDates = function (startDate, endDate) {
       date: moment(now).format("DD"),
       month: moment(now).format("MMMM"),
     });
-    console.log(dates);
+
     now.add(1, "days");
   }
   return dates;

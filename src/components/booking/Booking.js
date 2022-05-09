@@ -7,28 +7,18 @@ import moment from "moment";
 const format = "HH:mm";
 const { Title } = Typography;
 
-// function onChange(time, timeString) {
-//   console.log("Booking data is ......>>> ");
-//   console.log("time", time);
-//   console.log("timeString", timeString);
-//   localStorage.setItem("day", moment(timeString).format("dddd"));
-//   //   day: ,
-//   //       date: moment(now).format("DD"),
-//   //       month: moment(now).format("MMMM"),
-// }
-
-const Booking = () => {
+const Booking = (props) => {
+  console.log("in Booking");
   const [minutes, setMinutes] = useState(0);
   const [hours, setHours] = useState(0);
   if (minutes > 59) {
-    console.log(minutes);
     setHours(hours + 1);
     setMinutes(0);
   }
   if (hours > 23) {
     setHours(0);
   } else {
-    console.log(minutes);
+    // console.log(minutes);
   }
 
   return (
@@ -47,35 +37,23 @@ const Booking = () => {
             <Col offset={8}>
               <Title level={3}> Duration : </Title>
             </Col>
-            {/* <Col
-              offset={1}
-              style={{ fontSize: "20px", background: "red" }}
-              onClick={() => alert("hi")}
-            >
-              {" "}
-              aadasd
-            </Col> */}
+
             <Button
               shape="circle"
               icon={<MinusOutlined />}
               style={{ marginLeft: "10px", marginRight: "10px" }}
-              //   onClick={() => {
-              //     <TimePicker />;
-              //   }}
             />
-            <Col onClick={() => setMinutes(minutes + 1)}>
+            <Col>
               {" "}
               <Title level={3}>
-                <TimePicker
-                  onChange={() => setMinutes(moment(now).format("mm"))}
-                />
+                {hours}:{minutes}
               </Title>
             </Col>
             <Button
               shape="circle"
               icon={<PlusOutlined />}
               style={{ marginLeft: "10px", marginRight: "10px" }}
-              //   onClick={() => setMinutes(minutes + 1)}
+              onClick={() => setMinutes(minutes + 1)}
             />
           </Row>
         </Col>
