@@ -90,7 +90,6 @@ export const Calendar = (props) => {
             </Tooltip>
           </Col>
         </Row>
-
         <Row>
           <Carousal
             dots={false}
