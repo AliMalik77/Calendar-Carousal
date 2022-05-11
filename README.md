@@ -43,10 +43,10 @@ Start the server
 
 | Api              | Type      | Description                                                                         | Default_value |
 | :--------------- | :-------- | :---------------------------------------------------------------------------------- | :------------ |
-| `start_date`     | `string`  | **Required**. From where calendar is start                                          | `2021-02-03`  |
-| `end_date`       | `string`  | **Required**. To where calendar ends                                                | `2021-02-10`  |
-| `slidestoShow`   | `number`  | **Required**. how many cards can display on carousal screen                         | `3`           |
-| `slidestoScroll` | `number`  | **Required**. how many cards skip on moving to next carousal                        | `3`           |
+| `startDate`      | `string`  | **Required**. From where calendar is start                                          | `2021-02-03`  |
+| `endDate`        | `string`  | **Required**. To where calendar ends                                                | `2021-02-10`  |
+| `slidesToShow`   | `number`  | **Required**. how many cards can display on carousal screen                         | `3`           |
+| `slidesToScroll` | `number`  | **Required**. how many cards skip on moving to next carousal                        | `3`           |
 | `arrow`          | `boolean` | **Required**. used to move carousal forward                                         | `true`        |
 | `dots`           | `boolean` | **Required**. Dots to display on carousal                                           | `false`       |
 | `infinite`       | `boolean` | **Required**. calendar never ends. Whenever it reaches the endpoint it starts again | `true`        |
