@@ -1,6 +1,5 @@
 import { Carousel, Row, Col, Button } from "antd";
 import React from "react";
-import "./carousal.styles.less";
 import { RightOutlined } from "@ant-design/icons";
 import PropTypes from "prop-types";
 
