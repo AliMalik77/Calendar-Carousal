@@ -8,16 +8,7 @@ const Navbar = () => {
   return (
     <>
       <Layout>
-        <Header
-          style={{
-            color: "white",
-            textAlign: "center",
-            fontWeight: "bolder",
-            fontSize: "25px",
-          }}
-        >
-          Calendar Carousal
-        </Header>
+        <Header className="nav">Calendar Carousal</Header>
       </Layout>
     </>
   );

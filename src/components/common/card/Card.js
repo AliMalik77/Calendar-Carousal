@@ -8,11 +8,21 @@ const CalendarCard = (props) => {
   return (
     <>
       {" "}
-      <Card className="card" title={props.day}>
-        <p className="date">{props.date}</p>
-
-        <Meta className="meta" title={props.month}></Meta>
-      </Card>
+      {props.closed ? (
+        <Card
+          className="card-closed"
+          title={props.day}
+          headStyle={{ backgroundColor: "gray" }}
+        >
+          <p className="date">{props.date}</p>
+          <Meta className="meta" title={"Closed"}></Meta>
+        </Card>
+      ) : (
+        <Card className="card" title={props.day}>
+          <p className="date">{props.date}</p>
+          <Meta className="meta" title={props.month}></Meta>
+        </Card>
+      )}
     </>
   );
 };

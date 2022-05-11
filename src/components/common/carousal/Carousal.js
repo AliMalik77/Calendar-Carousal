@@ -17,36 +17,44 @@ function SampleNextArrow(props) {
   );
 }
 
-function SamplePrevArrow(props) {
-  const { className, style, onClick } = props;
-
-  return (
-    <div
-      className={className}
-      onClick={onClick}
-      style={{
-        height: "10vh",
-        backgroundColor: "red",
-        width: "50px",
-        marginRight: "100px",
-      }}
-    >
-      <Button>
-        {" "}
-        <LeftOutlined />
-      </Button>
-    </div>
-  );
-}
-
 export const Carousal = (props) => {
   const settings = {
-    // prevArrow: <SamplePrevArrow />,
     nextArrow: <SampleNextArrow />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 800,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 500,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   return (
-    <Col lg={{ span: 18, offset: 4 }}>
+    <Col
+      lg={{ span: 18, offset: 4 }}
+      md={{ span: 20, offset: 2 }}
+      sm={{ span: 18, offset: 3 }}
+      // xs={{ span: 12, offset: 2 }}
+    >
       <Carousel
         className="carousal"
         dots={props.dots}
@@ -73,7 +81,7 @@ Carousal.propTypes = {
 };
 
 Carousal.defaultProps = {
-  dots: true,
+  dots: false,
   arrows: true,
   slidesToShow: 3,
   slidesToScroll: 3,

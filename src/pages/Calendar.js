@@ -34,6 +34,9 @@ export const Calendar = () => {
   var startDate = moment("2021-02-03");
   var endDate = moment("2021-02-10");
 
+  var disable_dates = ["2021-02-03", "2021-02-04"];
+  var m_Date;
+  var check;
   var dateList = getDaysBetweenDates(startDate, endDate);
 
   function handleEvent(data) {
@@ -53,6 +56,7 @@ export const Calendar = () => {
         return {
           ...state,
           event: true,
+          date: ["Today"],
         };
       });
     } else {
@@ -60,6 +64,7 @@ export const Calendar = () => {
         return {
           ...state,
           event: false,
+          date: ["Today"],
         };
       });
     }
@@ -67,15 +72,12 @@ export const Calendar = () => {
   if (!initialState.event) {
     return (
       <>
-        <Row
-          style={{ marginTop: "200px", fontWeight: "bold", fontSize: "20px" }}
-        >
+        <Row className="date-row">
           <Col span={14} offset={4}>
-            {" "}
-            Date{" "}
+            Date
           </Col>
           <Col>
-            {initialState.date}{" "}
+            {initialState.date}
             <Tooltip title="Down">
               <Button
                 type="primary"
@@ -83,33 +85,48 @@ export const Calendar = () => {
                 icon={<CaretDownOutlined />}
                 onClick={() => handleDate(true)}
               />
-            </Tooltip>{" "}
+            </Tooltip>
           </Col>
         </Row>
 
         <Row>
           <Carousal
-            dots={true}
+            dots={false}
             arrows={true}
             slidesToShow={3}
             slidesToScroll={3}
             speed={300}
             infinite={true}
           >
-            {dateList.map((item, index) => (
-              <Col
-                span={24}
-                key={index}
-                onClick={() => handleEvent(dateList[index])}
-              >
-                <CalendarCard
-                  date={dateList[index].date}
-                  day={dateList[index].day}
-                  month={dateList[index].month}
-                  key={index}
-                />
-              </Col>
-            ))}
+            {dateList.map(
+              (item, index) => (
+                (m_Date =
+                  dateList[index].year +
+                  "-" +
+                  dateList[index].month +
+                  "-" +
+                  dateList[index].date),
+                (m_Date = moment(m_Date).format("YYYY-MM-DD")),
+                (check = disable_dates.includes(m_Date)),
+                (
+                  <Col
+                    span={24}
+                    key={index}
+                    onClick={
+                      check ? () => {} : () => handleEvent(dateList[index])
+                    }
+                  >
+                    <CalendarCard
+                      date={dateList[index].date}
+                      day={dateList[index].day}
+                      month={dateList[index].month}
+                      key={index}
+                      closed={check}
+                    />
+                  </Col>
+                )
+              )
+            )}
           </Carousal>
         </Row>
       </>
@@ -117,9 +134,7 @@ export const Calendar = () => {
   } else {
     return (
       <>
-        <Row
-          style={{ marginTop: "200px", fontWeight: "bold", fontSize: "20px" }}
-        >
+        <Row className="date-row">
           <Col span={14} offset={4}>
             {" "}
             Date{" "}
