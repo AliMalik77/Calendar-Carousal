@@ -5,10 +5,10 @@ import { Carousal } from "../components/common/carousal/Carousal";
 import CalendarCard from "../components/common/card/Card";
 import { Button, Tooltip } from "antd";
 import { CaretDownOutlined, CaretUpOutlined } from "@ant-design/icons";
-import Booking from "./Booking";
+import Booking from "../components/common/booking/Booking";
 
-const getDaysBetweenDates = function (startDate, endDate) {
-  var now = startDate.clone(),
+const getDaysBetweenDates = (startDate, endDate) => {
+  const now = startDate.clone(),
     dates = [];
 
   while (now.isSameOrBefore(endDate)) {
@@ -31,15 +31,15 @@ export const Calendar = () => {
     data: [],
   });
 
-  var startDate = moment("2021-02-03");
-  var endDate = moment("2021-02-10");
+  const startDate = moment("2021-02-03");
+  const endDate = moment("2021-02-10");
 
-  var disable_dates = ["2021-02-03", "2021-02-04"];
-  var m_Date;
-  var check;
-  var dateList = getDaysBetweenDates(startDate, endDate);
+  const disableDates = ["2021-02-03", "2021-02-04"];
+  let formatDate;
+  let check;
+  const dateList = getDaysBetweenDates(startDate, endDate);
 
-  function handleEvent(data) {
+  const handleEvent = (data) => {
     setInitialState((state) => {
       return {
         ...state,
@@ -48,9 +48,9 @@ export const Calendar = () => {
         data: data,
       };
     });
-  }
+  };
 
-  function handleDate(data) {
+  const handleDate = (data) => {
     if (data) {
       setInitialState((state) => {
         return {
@@ -68,7 +68,8 @@ export const Calendar = () => {
         };
       });
     }
-  }
+  };
+
   if (!initialState.event) {
     return (
       <>
@@ -100,14 +101,14 @@ export const Calendar = () => {
           >
             {dateList.map(
               (item, index) => (
-                (m_Date =
+                (formatDate =
                   dateList[index].year +
                   "-" +
                   dateList[index].month +
                   "-" +
                   dateList[index].date),
-                (m_Date = moment(m_Date).format("YYYY-MM-DD")),
-                (check = disable_dates.includes(m_Date)),
+                (formatDate = moment(formatDate).format("YYYY-MM-DD")),
+                (check = disableDates.includes(formatDate)),
                 (
                   <Col
                     span={24}

@@ -1,32 +1,31 @@
 import React, { useState } from "react";
 import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
-import TimePicker from "../components/common/timepicker/Timepicker";
+import TimePicker from "../timepicker/Timepicker";
 import { Typography, Row, Col, Button, Tooltip } from "antd";
 const { Title } = Typography;
-import "./pages.styles.less";
+import "./booking.styles.less";
 
 const Booking = (props) => {
   const [minutes, setMinutes] = useState(0);
   const [hours, setHours] = useState(0);
-  if (minutes > 59) {
-    setHours(hours + 1);
-    setMinutes(0);
-  }
-  if (hours > 23) {
-    setHours(0);
-  }
-  if (minutes < 0) {
-    setHours(hours - 1);
-    setMinutes(0);
-  }
-  if (minutes < 0 && hours > 0) {
-    setHours(hours - 1);
-    setMinutes(59);
-  }
-  if (hours < 0) {
-    alert("invalid time");
-    setHours(0);
-  }
+
+  const increaseTime = () => {
+    if (minutes < 59) {
+      setMinutes(minutes + 1);
+    } else if (minutes === 59) {
+      setHours((x) => x + 1);
+      setMinutes(0);
+    }
+  };
+  const decreaseTime = () => {
+    if (minutes > 0 && hours >= 0) {
+      setMinutes(minutes - 1);
+    } else if (minutes === 0 && hours > 0) {
+      setMinutes(59);
+      setHours(hours - 1);
+    }
+  };
+
   return (
     <>
       <Row className="box">
@@ -48,14 +47,14 @@ const Booking = (props) => {
                 shape="circle"
                 icon={<MinusOutlined />}
                 className="time-btn"
-                onClick={() => setMinutes(minutes - 1)}
+                onClick={() => decreaseTime()}
               />
               {hours} : {minutes}
               <Button
                 shape="circle"
                 icon={<PlusOutlined />}
                 className="time-btn"
-                onClick={() => setMinutes(minutes + 1)}
+                onClick={() => increaseTime()}
               />
             </Col>
           </Row>

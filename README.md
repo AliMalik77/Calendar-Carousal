@@ -51,18 +51,3 @@ Start the server
 | `dots`           | `boolean` | **Required**. Dots to display on carousal                                           | `false`       |
 | `infinite`       | `boolean` | **Required**. calendar never ends. Whenever it reaches the endpoint it starts again | `true`        |
 | `speed`          | `number`  | **Required**. speed of carousal swipes                                              | `300`         |
-
-## Authors
-
-- [@AliMalik77](https://github.com/AliMalik77)
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
-
-## Used By
-
-This project is used by the following companies:
-
-- CarbonTeq
-- FaceBook
