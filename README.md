@@ -43,8 +43,8 @@ Start the server
 
 | Api              | Type      | Description                                                                         | Default_value |
 | :--------------- | :-------- | :---------------------------------------------------------------------------------- | :------------ |
-| `Start_date`     | `string`  | **Required**. From where calendar is start                                          | `2021-02-03`  |
-| `End_date`       | `string`  | **Required**. To where calendar ends                                                | `2021-02-10`  |
+| `start_date`     | `string`  | **Required**. From where calendar is start                                          | `2021-02-03`  |
+| `end_date`       | `string`  | **Required**. To where calendar ends                                                | `2021-02-10`  |
 | `slidestoShow`   | `number`  | **Required**. how many cards can display on carousal screen                         | `3`           |
 | `slidestoScroll` | `number`  | **Required**. how many cards skip on moving to next carousal                        | `3`           |
 | `arrow`          | `boolean` | **Required**. used to move carousal forward                                         | `true`        |

@@ -1,7 +1,7 @@
 import { Carousel, Row, Col, Button } from "antd";
 import React from "react";
 import "./carousal.styles.less";
-import { LeftOutlined, RightOutlined } from "@ant-design/icons";
+import { RightOutlined } from "@ant-design/icons";
 import PropTypes from "prop-types";
 
 function SampleNextArrow(props) {
@@ -53,7 +53,6 @@ export const Carousal = (props) => {
       lg={{ span: 18, offset: 4 }}
       md={{ span: 20, offset: 2 }}
       sm={{ span: 18, offset: 3 }}
-      // xs={{ span: 12, offset: 2 }}
     >
       <Carousel
         className="carousal"

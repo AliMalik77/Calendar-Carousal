@@ -136,11 +136,10 @@ export const Calendar = () => {
       <>
         <Row className="date-row">
           <Col span={14} offset={4}>
-            {" "}
-            Date{" "}
+            Date
           </Col>
           <Col>
-            {initialState.date}{" "}
+            {initialState.date}
             <Tooltip title="Down">
               <Button
                 type="primary"
@@ -148,12 +147,11 @@ export const Calendar = () => {
                 icon={<CaretUpOutlined />}
                 onClick={() => handleDate(false)}
               />
-            </Tooltip>{" "}
+            </Tooltip>
           </Col>
         </Row>
 
         <Row>
-          {" "}
           <Col span={24}>
             <Booking data={initialState.data} />
           </Col>
