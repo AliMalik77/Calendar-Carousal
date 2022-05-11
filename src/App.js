@@ -5,7 +5,7 @@ const App = () => {
   return (
     <>
       <Layout>
-        <Calendar />
+        <Calendar disableDates={["2021-02-03", "2021-02-04"]} />
       </Layout>
     </>
   );

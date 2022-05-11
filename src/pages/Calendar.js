@@ -6,6 +6,7 @@ import CalendarCard from "../components/common/card/Card";
 import { Button, Tooltip } from "antd";
 import { CaretDownOutlined, CaretUpOutlined } from "@ant-design/icons";
 import Booking from "../components/common/booking/Booking";
+import PropTypes from "prop-types";
 
 const getDaysBetweenDates = (startDate, endDate) => {
   const now = startDate.clone(),
@@ -24,7 +25,7 @@ const getDaysBetweenDates = (startDate, endDate) => {
   return dates;
 };
 
-export const Calendar = () => {
+export const Calendar = (props) => {
   const [initialState, setInitialState] = useState({
     event: false,
     date: ["Today"],
@@ -34,7 +35,7 @@ export const Calendar = () => {
   const startDate = moment("2021-02-03");
   const endDate = moment("2021-02-10");
 
-  const disableDates = ["2021-02-03", "2021-02-04"];
+  const disableDates = props?.disableDates;
   let formatDate;
   let check;
   const dateList = getDaysBetweenDates(startDate, endDate);
@@ -160,4 +161,12 @@ export const Calendar = () => {
       </>
     );
   }
+};
+
+Calendar.propTypes = {
+  disableDates: PropTypes.array.isRequired,
+};
+
+Calendar.defaultProps = {
+  disableDates: ["2021-02-03"],
 };
