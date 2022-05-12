@@ -1,28 +1,11 @@
 import React, { useState } from "react";
-import { Col, Row, Button, Tooltip } from "antd";
+import { Col, Row } from "antd";
 import moment from "moment";
-import { Carousal } from "../common/carousal/Carousal";
-import CalendarCard from "../common/card/Card";
-import { CaretDownOutlined, CaretUpOutlined } from "@ant-design/icons";
 import Booking from "../common/booking/Booking";
 import PropTypes from "prop-types";
-
-const getDaysBetweenDates = (startDate, endDate) => {
-  const now = startDate.clone(),
-    dates = [];
-
-  while (now.isSameOrBefore(endDate)) {
-    dates.push({
-      day: moment(now).format("dddd"),
-      date: moment(now).format("DD"),
-      month: moment(now).format("MMMM"),
-      year: moment(now).format("YYYY"),
-    });
-
-    now.add(1, "days");
-  }
-  return dates;
-};
+import Dropdown from "../common/dropdown/Dropdown";
+import { getDaysBetweenDates } from "../../helper/GetDays";
+import Datelisting from "../common/datelisting/Datelisting";
 
 const Calendar = (props) => {
   const [initialState, setInitialState] = useState({
@@ -35,8 +18,6 @@ const Calendar = (props) => {
   const endDate = moment(props?.endDate);
   const disableDates = props?.disableDates;
 
-  let formatDate;
-  let check;
   const dateList = getDaysBetweenDates(startDate, endDate);
 
   const handleEvent = (data) => {
@@ -73,76 +54,26 @@ const Calendar = (props) => {
   if (!initialState.event) {
     return (
       <>
-        <Row className="date-row">
-          <Col span={14} offset={4}>
-            Date
-          </Col>
-          <Col>
-            {initialState.date}
-            <Tooltip title="Down">
-              <Button
-                type="primary"
-                shape="square"
-                icon={<CaretDownOutlined />}
-                onClick={() => handleDate(true)}
-              />
-            </Tooltip>
-          </Col>
-        </Row>
-        <Row>
-          <Carousal>
-            {dateList.map(
-              (item, index) => (
-                (formatDate =
-                  dateList[index].year +
-                  "-" +
-                  dateList[index].month +
-                  "-" +
-                  dateList[index].date),
-                (formatDate = moment(formatDate).format("YYYY-MM-DD")),
-                (check = disableDates.includes(formatDate)),
-                (
-                  <Col
-                    span={24}
-                    key={index}
-                    onClick={
-                      check ? () => {} : () => handleEvent(dateList[index])
-                    }
-                  >
-                    <CalendarCard
-                      date={dateList[index].date}
-                      day={dateList[index].day}
-                      month={dateList[index].month}
-                      key={index}
-                      closed={check}
-                    />
-                  </Col>
-                )
-              )
-            )}
-          </Carousal>
-        </Row>
+        <Dropdown
+          onClick={() => handleDate(true)}
+          initialState={initialState}
+        />
+        <Datelisting
+          onClick={(value) => {
+            handleEvent(dateList[value]);
+          }}
+          dateList={dateList}
+          disableDates={disableDates}
+        />
       </>
     );
   } else {
     return (
       <>
-        <Row className="date-row">
-          <Col span={14} offset={4}>
-            Date
-          </Col>
-          <Col>
-            {initialState.date}
-            <Tooltip title="Down">
-              <Button
-                type="primary"
-                shape="square"
-                icon={<CaretUpOutlined />}
-                onClick={() => handleDate(false)}
-              />
-            </Tooltip>
-          </Col>
-        </Row>
+        <Dropdown
+          onClick={() => handleDate(false)}
+          initialState={initialState}
+        />
 
         <Row>
           <Col span={24}>
