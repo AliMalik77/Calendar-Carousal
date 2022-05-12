@@ -1,12 +1,12 @@
 import React from "react";
 import Layout from "./components/common/layout/Layout";
-import { Calendar } from "./pages/Calendar";
+import Appointment from "./pages/Appointment";
 
 const App = () => {
   return (
     <>
       <Layout>
-        <Calendar disableDates={["2021-02-03", "2021-02-04"]} />
+        <Appointment />
       </Layout>
     </>
   );

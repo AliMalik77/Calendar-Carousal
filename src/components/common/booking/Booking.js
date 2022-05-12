@@ -5,7 +5,7 @@ import { Typography, Row, Col, Button, Tooltip } from "antd";
 const { Title } = Typography;
 import "./booking.styles.less";
 
-const Booking = (props) => {
+const Booking = () => {
   const [minutes, setMinutes] = useState(0);
   const [hours, setHours] = useState(0);
 
