@@ -8,21 +8,13 @@ import { getDaysBetweenDates } from "../../helper/GetDays";
 import Datelisting from "../common/datelisting/Datelisting";
 
 const Calendar = (props) => {
-  const [date, setDate] = useState(props?.startDate);
-
-  if (props?.onDateselect(date)) {
-    useEffect(() => {
-      setDate(props.onDateselect("2021-02-05"));
-    }, []);
-  }
-
   const [initialState, setInitialState] = useState({
     event: false,
     date: ["Today"],
     data: [],
   });
 
-  const startDate = moment(date);
+  const startDate = moment(props?.startDate);
   const endDate = moment(props?.endDate);
   const disableDates = props?.disableDates;
 
@@ -68,6 +60,7 @@ const Calendar = (props) => {
         />
         <Datelisting
           onClick={(value) => {
+            props.onDateselect(dateList[value]);
             handleEvent(dateList[value]);
           }}
           dateList={dateList}
