@@ -3,6 +3,7 @@ import { Col, Row } from "antd";
 import { Carousal } from "../carousal/Carousal";
 import CalendarCard from "../card/Card";
 import moment from "moment";
+import { openNotification } from "../notification/Notification";
 const Datelisting = (props) => {
   let formatDate;
   let check;
@@ -27,7 +28,7 @@ const Datelisting = (props) => {
                   onClick={
                     check
                       ? () => {
-                          alert("Event Booked on these dates");
+                          openNotification("Event Booked on this date");
                         }
                       : () => {
                           props.onClick(index);
