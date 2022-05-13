@@ -1,4 +1,4 @@
-# Calendar-carousal
+# Calendar-Carousal
 
 Using calendar Carousal user can set the event on any date with time and duration
 
