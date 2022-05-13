@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Col, Row } from "antd";
 import moment from "moment";
 import Booking from "../common/booking/Booking";
@@ -8,13 +8,21 @@ import { getDaysBetweenDates } from "../../helper/GetDays";
 import Datelisting from "../common/datelisting/Datelisting";
 
 const Calendar = (props) => {
+  const [date, setDate] = useState(props?.startDate);
+
+  if (props?.onDateselect(date)) {
+    useEffect(() => {
+      setDate(props.onDateselect("2021-02-05"));
+    }, []);
+  }
+
   const [initialState, setInitialState] = useState({
     event: false,
     date: ["Today"],
     data: [],
   });
 
-  const startDate = moment(props?.startDate);
+  const startDate = moment(date);
   const endDate = moment(props?.endDate);
   const disableDates = props?.disableDates;
 
@@ -89,12 +97,14 @@ Calendar.propTypes = {
   disableDates: PropTypes.array.isRequired,
   startDate: PropTypes.string.isRequired,
   endDate: PropTypes.string.isRequired,
+  onDateselect: PropTypes.func.isRequired,
 };
 
 Calendar.defaultProps = {
   disableDates: ["2021-02-03"],
   startDate: "2021-02-03",
   endDate: "2021-02-10",
+  onDateselect: () => {},
 };
 
 export default Calendar;
